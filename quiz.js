@@ -21,25 +21,34 @@ let questions = [
 
 
 let Answers = [
-    [1, 2, 3, 4],
-    [5, 6, 7, 8],
-    [9, 10, 11, 12],
-    [13, 14, 15, 16],
-    [17, 18, 19, 20],
-    [21, 22, 23, 24],
-    [25, 26, 27, 28],
-    [29, 30, 31, 32],
-    [33, 34, 35, 36],
-    [37, 38, 39, 40]
+    ["Answer 1A", "Answer 1B", "Answer 1C", "Answer 1D"],
+    ["Answer 2A", "Answer 2B", "Answer 2C", "Answer 2D"],
+    ["Answer 3A", "Answer 3B", "Answer 3C", "Answer 3D"],
+    ["Answer 4A", "Answer 4B", "Answer 4C", "Answer 4D"],
+    ["Answer 5A", "Answer 5B", "Answer 5C", "Answer 5D"],
+    ["Answer 6A", "Answer 6B", "Answer 6C", "Answer 6D"],
+    ["Answer 7A", "Answer 7B", "Answer 7C", "Answer 7D"],
+    ["Answer 8A", "Answer 8B", "Answer 8C", "Answer 8D"],
+    ["Answer 9A", "Answer 9B", "Answer 9C", "Answer 9D"],
+    ["Answer 10A", "Answer 10B", "Answer 10C", "Answer 10D"]
 ]
 
 // 
+let currentQuestionIndex = 0;
+
 function labelChangeTest() {
-    while (questions.length > 0) {
-        question.innerText = questions.shift();
+    if (currentQuestionIndex < questions.length) {
+        // Display the question
+        question.innerText = questions[currentQuestionIndex];
+        
+        // Display the answers
         for (let i = 0; i < 4; i++) {
-            document.getElementById("option" + (i + 1)).innerText = Answers[0].shift();
+            document.getElementById("label" + (i + 1)).innerText = Answers[currentQuestionIndex][i];
         }
-        break;
+        
+        currentQuestionIndex++;
+    } else {
+        question.innerText = "Quiz Complete!";
+        document.getElementById("options").style.display = "none";
     }
 }
