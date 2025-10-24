@@ -4,8 +4,15 @@ const option1 = document.getElementById("option1")
 const option2 = document.getElementById("option2")
 const option3 = document.getElementById("option3")
 const option4 = document.getElementById("option4")
+let right = 0;
+let wrong = 0;
+let correctAnswers = [2, 1, 0, 3, 2, 0, 3, 2, 1, 3]
+let currentQuestion = 0;
 
-// Questions and Answers
+
+
+
+// Array of questions
 let questions = [
     "Test Question 1",
     "Test Question 2",
@@ -19,36 +26,74 @@ let questions = [
     "test question 10"
 ]
 
-
+// Array of answer choices for each question
 let Answers = [
-    ["Answer 1A", "Answer 1B", "Answer 1C", "Answer 1D"],
-    ["Answer 2A", "Answer 2B", "Answer 2C", "Answer 2D"],
-    ["Answer 3A", "Answer 3B", "Answer 3C", "Answer 3D"],
-    ["Answer 4A", "Answer 4B", "Answer 4C", "Answer 4D"],
-    ["Answer 5A", "Answer 5B", "Answer 5C", "Answer 5D"],
-    ["Answer 6A", "Answer 6B", "Answer 6C", "Answer 6D"],
-    ["Answer 7A", "Answer 7B", "Answer 7C", "Answer 7D"],
-    ["Answer 8A", "Answer 8B", "Answer 8C", "Answer 8D"],
-    ["Answer 9A", "Answer 9B", "Answer 9C", "Answer 9D"],
-    ["Answer 10A", "Answer 10B", "Answer 10C", "Answer 10D"]
+    ["Answer 1A", "Answer 1B", "correct answer", "Answer 1D"],
+    ["Answer 2A", "correct answer", "Answer 2C", "Answer 2D"],
+    ["correct answer", "Answer 3B", "Answer 3C", "Answer 3D"],
+    ["Answer 4A", "Answer 4B", "Answer 4C", "correct answer"],
+    ["Answer 5A", "Answer 5B", "correct answer", "Answer 5D"],
+    ["correct answer", "Answer 6B", "Answer 6C", "Answer 6D"],
+    ["Answer 7A", "Answer 7B", "Answer 7C", "correct answer"],
+    ["Answer 8A", "Answer 8B", "correct answer", "Answer 8D"],
+    ["Answer 9A", "correct answer", "Answer 9C", "Answer 9D"],
+    ["Answer 10A", "Answer 10B", "Answer 10C", "correct answer"]
 ]
 
-// 
-let currentQuestionIndex = 0;
 
-function labelChangeTest() {
-    if (currentQuestionIndex < questions.length) {
-        // Display the question
-        question.innerText = questions[currentQuestionIndex];
-        
-        // Display the answers
+function initializeQuiz() {
+    question.innerText = questions[currentQuestion];
+    for (let i = 0; i < 4; i++) {
+        document.getElementById("label" + (i + 1)).innerText = Answers[currentQuestion][i];
+    }
+}
+
+initializeQuiz();
+
+function quiz(event) {
+    // prevent reload
+    if (event)  event.preventDefault();
+    
+    // 
+    if (currentQuestion < questions.length) {
+        let selected = -1;
         for (let i = 0; i < 4; i++) {
-            document.getElementById("label" + (i + 1)).innerText = Answers[currentQuestionIndex][i];
+            if (document.getElementById("option" + (i + 1)).checked){
+                selected = i;
+                break;
+            }
         }
         
-        currentQuestionIndex++;
+        if(selected !== -1){
+            if (selected === correctAnswers[currentQuestion]){
+                right++;
+                console.log("right");
+            }
+            else{
+                wrong++;
+                console.log("wrong");
+            }
+            document.getElementById("right").innerText = "Right: " + right;
+            document.getElementById("wrong").innerText = "Wrong: " + wrong;
+        
+        
+
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+            question.innerText = questions[currentQuestion];
+            for(let i = 0; i < 4; i++){
+                document.getElementById("label" + (i + 1)).innerText = Answers[currentQuestion][i];
+                document.getElementById("option" + (i + 1)).checked = false;
+            }
+        } else {
+            question.innerText = "Quiz Complete!";
+            document.getElementById("options").style.display = "none";
+            document.getElementById("Submit").style.display = "none";
+            return;
+        }
     } else {
-        question.innerText = "Quiz Complete!";
-        document.getElementById("options").style.display = "none";
+        alert("Please Select an Answer");
     }
+ }
 }

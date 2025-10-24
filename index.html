@@ -7,29 +7,36 @@
     <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-    <form  class = "questionBox" action="#">
+    <form  class = "questionBox" action="#" onsubmit="quiz(event)">
         <h1>Quiz</h1>
         <h3 id="question">example text</h3>
         <div id="options">
-            <label id="label1" for="option1">
-                <input id="option1" type="radio" name="option">
-                this is option one
-            </label><br>
-            <label id="label2" for="option2">
-                <input id="option2" type="radio" name="option">
-                this is option two
-            </label><br>
-            <label id="label3" for="option3">
-                <input id="option3" type="radio" name="option">
-                this is option three
-            </label><br>
-            <label id="label4" for="option4">
-                <input id="option4" type="radio" name="option">
-                this is option four
-            </label><br>
+            <input id="option1" type="radio" name="option">
+            <label id="label1" for="option1">this is option one</label>
+                
+                <br>
+            
+            <input id="option2" type="radio" name="option">
+            <label id="label2" for="option2">this is option two</label>
+                
+                <br>
+            
+            <input id="option3" type="radio" name="option">
+            <label id="label3" for="option3">this is option three</label>
+                
+                <br>
+            
+            <input id="option4" type="radio" name="option">
+            <label id="label4" for="option4">this is option four</label>
+                
+                <br>
+                
+            
         </div>
-        <button onclick="labelChangeTest()" id="Submit">Submit</button>
-
+        <button id="Submit">Submit</button>
+<div>
+    <p><span id="right">Right</span>:<span id="wrong">Wrong</span></p>
+</div>
     </form>
 
     <!-- Link To JS -->
