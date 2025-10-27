@@ -58,6 +58,7 @@ function retryQuiz() {
     document.getElementById("score").style.display = "none";
     console.clear();
     console.log("Quiz Restarted");
+    console.log(`Attempt: ${attempt - 1}`);
 }
 
 function initializeQuiz() {
