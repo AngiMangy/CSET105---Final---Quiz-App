@@ -6,6 +6,10 @@ let correctAnswers = [2, 1, 0, 3, 2, 0, 3, 0, 1, 0];
 let currentQuestion = 0;
 
 
+let attempt = 2;
+let attemptDisplay = document.getElementById("attempt");
+
+
 
 
 // Array of questions
@@ -37,6 +41,9 @@ let Answers = [
 ]
 
 function retryQuiz() {
+    let attemptDisplay = document.getElementById("attempt");
+    attemptDisplay.innerText = "Attempt: " + attempt;
+    attempt++;
     currentQuestion = 0
     right = 0
     wrong = 0
