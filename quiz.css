@@ -24,7 +24,7 @@ button:hover {
     border-radius: 10px;
     background-color: #BFC0BF;
     box-shadow: 0 2px 8px #0085CA;
-    height: 300px;
+    min-height: 300px;
 }
 
 .questionBox h1{

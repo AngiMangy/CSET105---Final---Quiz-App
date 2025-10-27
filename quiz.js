@@ -42,7 +42,7 @@ let Answers = [
 
 function retryQuiz() {
     let attemptDisplay = document.getElementById("attempt");
-    attemptDisplay.innerText = "Attempt: " + attempt;
+    attemptDisplay.innerText = `Attempt: ${attempt}`;
     attempt++;
     currentQuestion = 0
     right = 0
@@ -92,8 +92,8 @@ function quiz(event) {
                 wrong++;
                 console.log(`Question ${currentQuestion + 1} Submitted`);
             }
-            document.getElementById("right").innerText = "Right: " + right;
-            document.getElementById("wrong").innerText = "Wrong: " + wrong;
+            document.getElementById("right").innerText = `Right: ${right}`;
+            document.getElementById("wrong").innerText = `Wrong: ${wrong}`;
         
         
 
