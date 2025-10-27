@@ -30,7 +30,7 @@ button:hover {
 .questionBox h1{
     text-align: center;
 }
-.questionBox #Submit {
+.questionBox #submit {
     margin-top: 2%;
     background-color: #007BFF;
     border-radius: 5px;
@@ -59,4 +59,14 @@ body{
     color: #721c24;
     border: 1px solid #f5c6cb;
      box-shadow: 0 2px 8px #f5c6cb;
+}
+#retry {
+    display: none;
+    margin-top: 2%;
+    background-color: #007BFF;
+    border-radius: 5px;
+    font-size: 20px;
+}
+#score {
+    display: none;
 }

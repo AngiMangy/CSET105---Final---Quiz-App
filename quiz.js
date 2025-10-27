@@ -1,12 +1,8 @@
 // Global Variables
 const question = document.getElementById("question")
-const option1 = document.getElementById("option1")
-const option2 = document.getElementById("option2")
-const option3 = document.getElementById("option3")
-const option4 = document.getElementById("option4")
 let right = 0;
 let wrong = 0;
-let correctAnswers = [2, 1, 0, 3, 2, 0, 3, 2, 1, 3]
+let correctAnswers = [2, 1, 0, 3, 2, 0, 3, 0, 1, 0];
 let currentQuestion = 0;
 
 
@@ -14,32 +10,48 @@ let currentQuestion = 0;
 
 // Array of questions
 let questions = [
-    "Test Question 1",
-    "Test Question 2",
-    "Test Question 3",
-    "test question 4",
-    "test question 5",
-    "test question 6",
-    "test question 7",
-    "test question 8",
-    "test question 9",
-    "test question 10"
+    "Whos the Red Rifle?",
+    "What is the capital city of France?",
+    "Which one of Saturn's moons has methane lakes?",
+    "What is the Largest Land Animal to ever exist?",
+    "Which country is known for inventing pizza?",
+    "Which country has the most vending machines per capita",
+    "Which bird is known for mimicking chainsaws, car alarms, and camera shutters?",
+    "Is the Parasaurolophus the coolest Dino?",
+    "What Question is this?",
+    "Was This a good Quiz?"
 ]
 
 // Array of answer choices for each question
 let Answers = [
-    ["Answer 1A", "Answer 1B", "correct answer", "Answer 1D"],
-    ["Answer 2A", "correct answer", "Answer 2C", "Answer 2D"],
-    ["correct answer", "Answer 3B", "Answer 3C", "Answer 3D"],
-    ["Answer 4A", "Answer 4B", "Answer 4C", "correct answer"],
-    ["Answer 5A", "Answer 5B", "correct answer", "Answer 5D"],
-    ["correct answer", "Answer 6B", "Answer 6C", "Answer 6D"],
-    ["Answer 7A", "Answer 7B", "Answer 7C", "correct answer"],
-    ["Answer 8A", "Answer 8B", "correct answer", "Answer 8D"],
-    ["Answer 9A", "correct answer", "Answer 9C", "Answer 9D"],
-    ["Answer 10A", "Answer 10B", "Answer 10C", "correct answer"]
+    ["Lamar Jackson", "Joe Flacco", "Andy Dalton", "Patrick Mahomes"],
+    ["Berlin", "Paris", "Washington D.C", "Pluto"],
+    ["Titan", "Hyperion", "Tethys", "Dione"],
+    ["Mr.C", "Rob", "Elephant", "Patagotitan"],
+    ["Greece", "France", "Italy", "Spain"],
+    ["Japan", "Germany", "United States", "South Korea"],
+    ["Parrot", "Mynah", "Mockingbird", "Lyrebird"],
+    ["Yes", "No", "Maybe", "What is a Dino?"],
+    ["Question 1", "Question 9", "Question 7", "Question 10"],
+    ["Yes", "No", "Maybe", "What's a Quiz?"]
 ]
 
+function retryQuiz() {
+    currentQuestion = 0
+    right = 0
+    wrong = 0
+    question.innerText = questions[currentQuestion];
+    for (let i = 0; i < 4; i++) {
+        document.getElementById("label" + (i + 1)).innerText = Answers[currentQuestion][i];
+        document.getElementById("option" + (i + 1)).checked = false;
+    }
+    document.getElementById("options").style.display = "";
+    document.getElementById("submit").style.display = "";
+    document.getElementById("retry").style.display = "none";
+    document.getElementById("score").style.display = "none";
+    console.clear();
+    console.log("Quiz Restarted");
+}
 
 function initializeQuiz() {
     question.innerText = questions[currentQuestion];
@@ -50,11 +62,11 @@ function initializeQuiz() {
 
 initializeQuiz();
 
+
+
 function quiz(event) {
-    // prevent reload
     if (event)  event.preventDefault();
-    
-    // 
+     
     if (currentQuestion < questions.length) {
         let selected = -1;
         for (let i = 0; i < 4; i++) {
@@ -67,11 +79,11 @@ function quiz(event) {
         if(selected !== -1){
             if (selected === correctAnswers[currentQuestion]){
                 right++;
-                console.log("right");
+                console.log(`Question ${currentQuestion + 1} Submitted`);
             }
             else{
                 wrong++;
-                console.log("wrong");
+                console.log(`Question ${currentQuestion + 1} Submitted`);
             }
             document.getElementById("right").innerText = "Right: " + right;
             document.getElementById("wrong").innerText = "Wrong: " + wrong;
@@ -89,7 +101,11 @@ function quiz(event) {
         } else {
             question.innerText = "Quiz Complete!";
             document.getElementById("options").style.display = "none";
-            document.getElementById("Submit").style.display = "none";
+            document.getElementById("submit").style.display = "none";
+            document.getElementById("retry").style.display = "block";
+            document.getElementById("score").style.display = "block";
+            console.log(`Quiz completed. Score: ${right}/${questions.length}`);
+            document.getElementById("finalScore").innerText = `Final Score: ${right}/${questions.length}`;
             return;
         }
     } else {
